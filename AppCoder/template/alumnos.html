@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumnos</title>
+</head>
+<body>
+
+    {% extends "padre.html" %}
+    {% load static %}
+    {% block contenido %}
+    <main class="container">
+        <h1 class="text-center"> Alumnos </h1>
+    
+        
+
+        <a href="{% url 'alta_alumno'%}"" class="btn btn-primary btn-sm">Nuevo Alumno</a>
+        <a href="{% url 'buscar_alumno'%}"" class="btn btn-primary btn-sm">Buscar Alumno</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Dni</th>
+                    <th>Correo</th>
+                    <th>Curso</th>
+                </tr>            
+            </thead>
+            <tbody>
+                {% for n in alumnos %}
+                <tr>
+                    <th>{{n.nombre}}</th>
+                    <td>{{n.apellido}}</td>
+                    <td>{{n.dni}}</td>
+                    <td>{{n.correo}}</td>
+                    <td>{{n.curso}}</td>
+                    {% if  request.user.is_authenticated %}
+                    <td><a href="{% url 'editar_alumno' n.id %}" class="btn btn-warning btn-sm">Editar</a></td>           
+                    <td><a href="{% url 'eliminar_alumno' n.id %}" class="btn btn-danger btn-sm">Borrar</a></td>
+                    {% endif %}
+                    
+                </tr>
+
+                {% endfor %}
+                
+            </tbody>
+
+
+        </table>
+
+    </main>
+
+    {%endblock%}
+
+    
+</body>
+</html>

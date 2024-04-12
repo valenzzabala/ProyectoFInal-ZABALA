@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Profesor</title>
+</head>
+<body>
+
+    {% extends "padre.html" %}
+    {% load static %}
+    
+    {% block contenido %}  
+    <main class="container">
+        {% if profesores %}
+        <h1 class="text-center">Se encontro el siguiente profesor</h1>
+            <ul>
+            {% for profesor in profesores %}
+                <li>Nombre: {{profesor.nombre}}</li>
+                <li>Apellido: {{profesor.apellido}}</li>
+                <li>Correo: {{profesor.correo}}</li>
+                <li>Curso: {{profesor.curso}}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+    
+            <h1 class="text-center">No se encontraron profesores con este dni</h1>
+        {% endif %}
+    </main>
+    
+    {% endblock %}
+    
+</body>
+</html>

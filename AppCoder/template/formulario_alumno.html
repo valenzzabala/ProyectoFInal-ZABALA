@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Alumno</title>
+</head>
+<body>
+
+    {% extends "padre.html" %}
+    {% load static %}
+    
+    {% block contenido %}
+
+        <form action="alta_alumno" method="POST">
+            {% csrf_token %}
+            <p span style="font-weight: bold;">Nombre:</p>
+            <input type="text" name="nombre" required>
+            <p span style="font-weight: bold;">Apellido:</p>
+            <input type="text" name="apellido" required>
+            <p span style="font-weight: bold;">Correo:</p>
+            <input type="email" name="correo" required>
+            <p span style="font-weight: bold;">Dni:<p>
+            <input type="text" name="dni" required>
+            
+            <p span style="font-weight: bold;"> Curso:</p>
+            <select name="curso" required>
+                {% for curso in cursos %}
+                    <option 
+                    value="{{ curso.id }}">{{ curso.nombre }} <p>Camada:</p>{{curso.camada}}
+                    </option>
+                {% endfor %}
+            </select>
+    
+            <button class="btn btn-primary btn-sm">Enviar</button>
+        </form>
+
+    {% endblock %}
+    
+    
+</body>
+</html>

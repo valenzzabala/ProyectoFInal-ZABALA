@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Curso</title>
+</head>
+    <body>  
+    {% extends "padre.html" %}
+    {% load static %}
+
+    {% block contenido %}  
+    
+        <h2>Buscar Curso</h2>
+        <form action="buscar" method="GET">
+            <p>Nombre</p>
+            <input type="text" name="nombre" id="nombre">
+            <button class="btn btn-primary btn-sm">Buscar</button>
+        </form> 
+
+
+    {% endblock %}
+        
+</body>
+</html>

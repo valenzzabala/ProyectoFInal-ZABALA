@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumnos por curso</title>
+</head
+<body>
+
+    {% extends "padre.html" %}
+    {% load static %}
+    {% block contenido %}
+
+    <main class="container">
+        <h1 class="text-center"> Alumnos de: {{curso.nombre}}  Camada: {{curso.camada}}</h1>
+    
+        <a href="{% url 'cursos'%}" class="btn btn-primary btn-sm">Volver a cursos</a>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>DNI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alumno in alumnos %}
+                    <tr>
+                        <td>{{ alumno.nombre }}</td>
+                        <td>{{ alumno.apellido }}</td>
+                        <td>{{ alumno.correo }}</td>
+                        <td>{{ alumno.dni }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+    
+    
+    </main>
+    {%endblock%}
+    
+
+    
+</body>
+</html>
+
+

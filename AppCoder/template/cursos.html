@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+</head>
+<body>
+    {% extends 'padre.html' %}
+
+    {% load static %}
+
+
+    {% block contenido %}
+
+    <main class="container">
+        <h1 class="text-center"> Cursos </h1>
+
+        <a href="{% url 'alta_curso'%}" class="btn btn-primary btn-sm">Nuevo Curso</a>
+        <a href="{% url 'buscar_curso' %}" class="btn btn-primary btn-sm">Buscar Curso</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Camada</th>
+                </tr>            
+            </thead>
+            <tbody>
+                {% for n in cursos %}
+                <tr>
+                    <td>{{n.nombre}}</td>
+                    <td>{{n.camada}}</td>
+                    <td><a href="{% url 'alumnos_curso' curso_id=n.id %}" class="btn btn-success btn-sm">Alumnos</a></td>
+                    <td><a href="{% url 'profesores_curso' curso_id=n.id %}" class="btn btn-info btn-sm">Profesores</a></td>
+                    {% if  request.user.is_authenticated %}
+                    <td><a href="{% url 'editar_curso' n.id %}" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a href="{% url 'elimina_curso' n.id %}" class="btn btn-danger btn-sm">Borrar</a></td>
+                    {% endif %}
+                    
+                </tr>
+
+                {% endfor %}
+                
+            </tbody>
+
+
+        </table>
+
+
+
+    </main>
+
+    {%endblock%}
+</body>
+</html>
